@@ -114,6 +114,24 @@ const struct memkind_ops MEMKIND_HBW_PREFERRED_HUGETLB_OPS = {
     .init_once = memkind_hbw_preferred_hugetlb_init_once,
 };
 
+const struct memkind_ops MEMKIND_HBW_INTERLEAVE_OPS = {
+    .create = memkind_arena_create,
+    .destroy = memkind_arena_destroy,
+    .malloc = memkind_arena_malloc,
+    .calloc = memkind_arena_calloc,
+    .posix_memalign = memkind_arena_posix_memalign,
+    .realloc = memkind_arena_realloc,
+    .free = memkind_default_free,
+    .check_available = memkind_hbw_check_available,
+    .mbind = memkind_default_mbind,
+    .get_mmap_flags = memkind_default_get_mmap_flags,
+    .get_mbind_mode = memkind_interleave_get_mbind_mode,
+    .get_mbind_nodemask = memkind_hbw_get_mbind_nodemask,
+    .get_arena = memkind_thread_get_arena,
+    .get_size = memkind_default_get_size,
+    .init_once = memkind_hbw_interleave_init_once,
+};
+
 struct numanode_bandwidth_t {
     int numanode;
     int bandwidth;
@@ -462,3 +480,8 @@ void memkind_hbw_preferred_hugetlb_init_once(void)
     assert(err == 0);
 }
 
+void memkind_hbw_interleave_init_once(void)
+{
+    int err = memkind_arena_create_map(MEMKIND_HBW_INTERLEAVE);
+    assert(err == 0);
+}

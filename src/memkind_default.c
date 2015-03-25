@@ -192,6 +192,12 @@ int memkind_preferred_get_mbind_mode(struct memkind *kind, int *mode)
     return 0;
 }
 
+int memkind_interleave_get_mbind_mode(struct memkind *kind, int *mode)
+{
+    *mode = MPOL_INTERLEAVE;
+    return 0;
+}
+
 int memkind_posix_check_alignment(struct memkind *kind, size_t alignment)
 {
     int err = 0;
