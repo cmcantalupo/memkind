@@ -38,6 +38,7 @@ int memkind_default_posix_memalign(struct memkind *kind, void **memptr, size_t a
 void *memkind_default_realloc(struct memkind *kind, void *ptr, size_t size);
 void memkind_default_free(struct memkind *kind, void *ptr);
 void *memkind_default_mmap(struct memkind *kind, void *addr, size_t size);
+void *memkind_nohugepage_mmap(struct memkind *kind, void *addr, size_t size);
 int memkind_default_mbind(struct memkind *kind, void *ptr, size_t size);
 int memkind_default_get_mmap_file(struct memkind *kind, int *fd, off_t *offset);
 int memkind_default_get_mmap_flags(struct memkind *kind, int *flags);

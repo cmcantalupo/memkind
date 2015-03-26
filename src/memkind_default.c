@@ -150,6 +150,22 @@ void *memkind_default_mmap(struct memkind *kind, void *addr, size_t size)
     return result;
 }
 
+void *memkind_nohugepage_mmap(struct memkind *kind, void *addr, size_t size)
+{
+    void *result;
+    int err;
+
+    result = memkind_default_mmap(kind, addr, size);
+    if (result != MAP_FAILED) {
+        err = madvise(result, size, MADV_NOHUGEPAGE);
+        if (err) {
+            munmap(result, size);
+            result = MAP_FAILED;
+        }
+    }
+    return result;
+}
+
 int memkind_default_mbind(struct memkind *kind, void *ptr, size_t size)
 {
     nodemask_t nodemask;
