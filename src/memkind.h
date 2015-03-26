@@ -97,6 +97,7 @@ struct memkind_ops {
     void (* free)(struct memkind *kind, void *ptr);
     void *(* mmap)(struct memkind *kind, void *addr, size_t size);
     int (* mbind)(struct memkind *kind, void *ptr, size_t size);
+    int (* madvise)(struct memkind *kind, void *addr, size_t size);
     int (* get_mmap_flags)(struct memkind *kind, int *flags);
     int (* get_mmap_file)(struct memkind *kind, int *fd, off_t *offset);
     int (* get_mbind_mode)(struct memkind *kind, int *mode);
