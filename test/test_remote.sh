@@ -50,8 +50,7 @@ rm -f all_tests.xml
 
 pushd $rpmdir
 mkrpm=`ls -t memkind-devel*.rpm | head -n1`
-jerpm=`ls -t jemalloc-devel*.rpm | head -n1`
-scp $mkrpm $jerpm $remote_login@$remote_ip:
+scp $mkrpm $remote_login@$remote_ip:
 popd
 
 scp $basedir/.libs/all_tests $remote_login@$remote_ip:
@@ -87,7 +86,7 @@ fi
 
 ssh root@$remote_ip "rpm -e memkind-devel >& /dev/null"
 ssh root@$remote_ip "rpm -e jemalloc-devel >& /dev/null"
-ssh root@$remote_ip "rpm -i ~$remote_login/$mkrpm ~$remote_login/$jerpm"
+ssh root@$remote_ip "rpm -i ~$remote_login/$mkrpm"
 ssh root@$remote_ip "echo 4000 > /proc/sys/vm/nr_hugepages"
 ssh root@$remote_ip "echo 4000 > /proc/sys/vm/nr_overcommit_hugepages"
 
