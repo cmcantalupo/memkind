@@ -112,7 +112,7 @@ pushd obj
 ../configure --enable-autogen --with-jemalloc-prefix=je_ --enable-memkind \
              --enable-safe --enable-cc-silence \
              --prefix=%{_prefix} --includedir=%{_includedir} --libdir=%{_libdir} \
-             --bindir=%{_bindir} --docdir=%{_docdir} --mandir=%{_mandir} \
+             --bindir=%{_bindir} --docdir=%{_docdir} --mandir=%{_mandir}
 $(make_prefix)%{__make} $(make_postfix)
 popd
 popd
