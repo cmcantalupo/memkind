@@ -56,6 +56,7 @@ BuildRequires: libnuma-devel
 %else
 BuildRequires: numactl-devel
 %endif
+
 Prefix: %{_prefix}
 Prefix: %{_initddir}
 
@@ -103,20 +104,11 @@ pushd jemalloc
 test -f configure || %{__autoconf}
 %{__mkdir_p} obj
 pushd obj
-%if %{defined suse_version}
 ../configure --enable-autogen --with-jemalloc-prefix=je_ --enable-memkind \
              --enable-safe --enable-cc-silence \
              --prefix=%{_prefix} --includedir=%{_includedir} --libdir=%{_libdir} \
              --bindir=%{_bindir} --docdir=%{_docdir} --mandir=%{_mandir} \
-             --with-xslroot=/usr/share/xml/docbook/stylesheet/nwalsh/current
-%else
-../configure --enable-autogen --with-jemalloc-prefix=je_ --enable-memkind \
-             --enable-safe --enable-cc-silence \
-             --prefix=%{_prefix} --includedir=%{_includedir} --libdir=%{_libdir} \
-             --bindir=%{_bindir} --docdir=%{_docdir} --mandir=%{_mandir}
-%endif
 $(make_prefix)%{__make} $(make_postfix)
-%{__make} build_doc
 popd
 popd
 
