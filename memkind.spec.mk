@@ -40,14 +40,14 @@ memkind-$(version).spec:
 .PHONY: rpm
 
 define memkind_spec
-Summary: Extention to libnuma for kinds of memory
+Summary: User Extensible Heap Manager
 Name: memkind
 Version: $(version)
 Release: $(release)
 License: See COPYING
 Group: System Environment/Libraries
 Vendor: Intel Corporation
-URL: https://github.com/memkind/memkind
+URL: http://memkind.github.io/memkind
 Source0: memkind-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires:  gcc-c++
@@ -70,12 +70,15 @@ Prefix: %{_initddir}
 The memkind library is a user extensible heap manager built on top of
 jemalloc which enables control of memory characteristics and a
 partitioning of the heap between kinds of memory.  The kinds of memory
-implemented within the library enable the control of NUMA and page
-size features.  The jemalloc heap manager has been extended to include
-callbacks which modify the parameters for the mmap() system call and
-provide a wrapper around the mbind() system call.  The callbacks are
-managed by the memkind library which provides both a heap manager and
-functions to create new user defined kinds of memory.
+are defined by operating system memory policies that have been applied
+to virtual address ranges.  Memory characteristics supported by
+memkind without user extension include control of NUMA and page size
+features.  The jemalloc non-standard interface has been extended to
+enable specialized arenas to make requests for virtual memory from the
+operating system through the memkind partition interface.  Through the
+other memkind interfaces the user can control and extend memory
+partition features and allocate memory while selecting enabled
+features.
 
 %prep
 
@@ -89,13 +92,15 @@ Group: Development/Libraries
 The memkind library is a user extensible heap manager built on top of
 jemalloc which enables control of memory characteristics and a
 partitioning of the heap between kinds of memory.  The kinds of memory
-implemented within the library enable the control of NUMA and page
-size features.  The jemalloc heap manager has been extended to include
-callbacks which modify the parameters for the mmap() system call and
-provide a wrapper around the mbind() system call.  The callbacks are
-managed by the memkind library which provides both a heap manager and
-functions to create new user defined kinds of memory.  The devel 
-package installs header files.
+are defined by operating system memory policies that have been applied
+to virtual address ranges.  Memory characteristics supported by
+memkind without user extension include control of NUMA and page size
+features.  The jemalloc non-standard interface has been extended to
+enable specialized arenas to make requests for virtual memory from the
+operating system through the memkind partition interface.  Through the
+other memkind interfaces the user can control and extend memory
+partition features and allocate memory while selecting enabled
+features.  The devel package installs header files.
 
 %build
 test -f configure || ./autogen.sh
