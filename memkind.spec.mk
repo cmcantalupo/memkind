@@ -109,7 +109,7 @@ pushd jemalloc
 test -f configure || %{__autoconf}
 %{__mkdir_p} obj
 pushd obj
-../configure --enable-autogen --with-jemalloc-prefix=je_ --enable-memkind \
+../configure --enable-autogen --with-jemalloc-prefix=jemk_ --enable-memkind \
              --enable-safe --enable-cc-silence \
              --prefix=%{_prefix} --includedir=%{_includedir} --libdir=%{_libdir} \
              --bindir=%{_bindir} --docdir=%{_docdir} --mandir=%{_mandir}
