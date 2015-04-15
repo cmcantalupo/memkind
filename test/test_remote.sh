@@ -85,7 +85,6 @@ if [ -n "$COVFILE" ]; then
 fi
 
 ssh root@$remote_ip "rpm -e memkind-devel >& /dev/null"
-ssh root@$remote_ip "rpm -e jemalloc-devel >& /dev/null"
 ssh root@$remote_ip "rpm -i ~$remote_login/$mkrpm"
 ssh root@$remote_ip "echo 4000 > /proc/sys/vm/nr_hugepages"
 ssh root@$remote_ip "echo 4000 > /proc/sys/vm/nr_overcommit_hugepages"
