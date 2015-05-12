@@ -90,14 +90,6 @@ stop() {
     if [ $err -eq 0 ] && [ ! -f $MEMKIND_FILE ]
     then
         echo_success "deleted file: $MEMKIND_FILE"
-        rmdir $MEMKIND_DIR
-        err=$?
-        if [ $err -eq 0 ] && [ ! -d $MEMKIND_DIR ]
-        then
-            echo_success "deleted directory: $MEMKIND_DIR"
-        else
-            echo_failure "could not delete directory: $MEMKIND_DIR"
-        fi
     else
         echo_failure "could not delete file: $MEMKIND_FILE"
     fi
