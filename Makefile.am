@@ -43,7 +43,30 @@ libmemkind_la_SOURCES = src/hbwmalloc.c \
                         src/actbl.h \
                         src/actypes.h \
                         # end
-libmemkind_la_LIBADD = jemalloc/obj/lib/libjemalloc_pic.a
+
+libmemkind_la_LIBADD = jemalloc/obj/src/jemalloc.pic.o \
+                       jemalloc/obj/src/arena.pic.o \
+                       jemalloc/obj/src/atomic.pic.o \
+                       jemalloc/obj/src/base.pic.o \
+                       jemalloc/obj/src/bitmap.pic.o \
+                       jemalloc/obj/src/chunk.pic.o \
+                       jemalloc/obj/src/chunk_dss.pic.o \
+                       jemalloc/obj/src/chunk_mmap.pic.o \
+                       jemalloc/obj/src/ckh.pic.o \
+                       jemalloc/obj/src/ctl.pic.o \
+                       jemalloc/obj/src/extent.pic.o \
+                       jemalloc/obj/src/hash.pic.o \
+                       jemalloc/obj/src/huge.pic.o \
+                       jemalloc/obj/src/mb.pic.o \
+                       jemalloc/obj/src/mutex.pic.o \
+                       jemalloc/obj/src/prof.pic.o \
+                       jemalloc/obj/src/quarantine.pic.o \
+                       jemalloc/obj/src/rtree.pic.o \
+                       jemalloc/obj/src/stats.pic.o \
+                       jemalloc/obj/src/tcache.pic.o \
+                       jemalloc/obj/src/util.pic.o \
+                       jemalloc/obj/src/tsd.pic.o \
+                       # end
 
 libmemkind_la_LDFLAGS = -version-info $(memkind_abi_version)
 
