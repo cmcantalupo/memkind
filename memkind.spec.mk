@@ -143,8 +143,8 @@ touch %{buildroot}/%{statedir}/node-bandwidth
 rm -f %{buildroot}/%{_libdir}/libmemkind.a
 rm -f %{buildroot}/%{_libdir}/libmemkind.la
 rm -f %{buildroot}/%{_libdir}/libnumakind.*
-rm -f %{buildroot}/%{_libdir}/libautohbw.*
-
+rm -f %{buildroot}/%{_libdir}/libautohbw.a
+rm -f %{buildroot}/%{_libdir}/libautohbw.la
 $(extra_install)
 
 %clean
@@ -193,6 +193,9 @@ fi
 %{_libdir}/libmemkind.so.0.0.1
 %{_libdir}/libmemkind.so.0
 %{_libdir}/libmemkind.so
+%{_libdir}/libautohbw.so
+%{_libdir}/libautohbw.so.0.0.0
+%{_libdir}/libautohbw.so.0
 %{_bindir}/memkind-hbw-nodes
 %{_sbindir}/memkind-pmtt
 %{_initddir}/memkind
