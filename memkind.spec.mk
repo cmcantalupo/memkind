@@ -71,6 +71,7 @@ $(opt_provides)
 
 %define statedir %{_localstatedir}/run/%{namespace}
 
+%define pkglibdir %{_libdir}/%{namespace}
 
 # x86_64 is the only arch memkind will build due to its
 # current dependency on SSE4.2 CRC32 instruction which
@@ -157,8 +158,8 @@ cd %{_builddir}/%{buildsubdir}
 touch %{buildroot}/%{statedir}/node-bandwidth
 %endif
 rm -f %{buildroot}/%{_libdir}/lib%{namespace}.{l,}a
-rm -f %{buildroot}/%{_libdir}/lib{numakind,autohbw}.*
-
+rm -f %{buildroot}/%{pkglibdir}/libautohbw.{l,}a
+rm -f %{buildroot}/%{_libdir}/libnumakind.*
 %pre
 %{service_add_pre %{namespace}.service}
 
@@ -180,7 +181,9 @@ rm -f %{buildroot}/%{_libdir}/lib{numakind,autohbw}.*
 %doc %{_docdir}/%{namespace}/VERSION
 %dir %{_docdir}/%{namespace}
 %dir %{_unitdir}
+%dir %{pkglibdir}
 %{_libdir}/lib%{namespace}.so.*
+%{pkglibdir}/libauthbw.so.*
 %{_bindir}/%{namespace}-hbw-nodes
 %{_sbindir}/%{namespace}-pmtt
 %{_unitdir}/%{namespace}.service
@@ -193,6 +196,7 @@ rm -f %{buildroot}/%{_libdir}/lib{numakind,autohbw}.*
 %{_includedir}/%{namespace}*.h
 %{_includedir}/hbwmalloc.h
 %{_libdir}/lib%{namespace}.so
+%{pkglibdir}/libautohbw.so
 %{_mandir}/man3/hbwmalloc.3.*
 %{_mandir}/man3/%{namespace}*.3.*
 

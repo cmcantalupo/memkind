@@ -38,9 +38,8 @@ noinst_PROGRAMS += examples/memkind_allocated
 endif
 
 
-lib_LTLIBRARIES += examples/libnumakind.la \
-                   examples/libautohbw.la \
-                   # end
+lib_LTLIBRARIES += examples/libnumakind.la
+pkglib_LTLIBRARIES += examples/libautohbw.la
 
 EXTRA_DIST += examples/autohbw_get_src_lines.pl
 
